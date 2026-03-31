@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+@theme {
+  /* Dark tech palette */
+  --color-dark-bg: #080812;
+  --color-dark-surface: #0c0c16;
+  --color-dark-elevated: #12121d;
+  --color-dark-border: #1e1e2a;
+  
+  /* Accent colors from logo */
+  --color-accent-yellow: #f4b41a;
+  --color-accent-yellow-bright: #ffd966;
+  --color-accent-yellow-dim: #b8890f;
+  
+  /* Neutral grays */
+  --color-text-primary: #e8e8f0;
+  --color-text-secondary: #a0a0b8;
+  --color-text-dim: #6a6a7f;
+  
+  /* Glass effect colors */
+  --color-glass-light: rgba(255, 255, 255, 0.05);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+  
+  /* Spacing scale */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 6rem;
+  --spacing-2xl: 8rem;
+}
+
+@layer base {
+  * {
+    @apply border-dark-border;
+  }
+
+  body {
+    @apply text-text-primary antialiased;
+    background:
+      radial-gradient(900px circle at 50% 30%, #0c0c16 0%, #080812 45%, #06060e 85%),
+      linear-gradient(180deg, #090914 0%, #080812 50%, #05050b 100%);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 6rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 4vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  h3 {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  h4 {
+    font-size: clamp(1.25rem, 2vw, 2rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  p {
+    font-size: 1.0625rem;
+    font-weight: 400;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+  }
+
+  small {
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  .glass-tech {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-tech-hover {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+
+  .glow-yellow {
+    box-shadow: 0 0 40px rgba(244, 180, 26, 0.15);
+  }
+
+  .glow-yellow-strong {
+    box-shadow: 0 0 60px rgba(244, 180, 26, 0.3);
+  }
+
+  .font-poppins {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  }
+
+  .text-gradient-light {
+    background: linear-gradient(180deg, #c7c7d1 0%, #ffffff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
