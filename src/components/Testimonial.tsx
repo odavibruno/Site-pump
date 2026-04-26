@@ -3,7 +3,7 @@ import { ImageWithFallback } from './figma/ImageWithFallback'
 
 export function Testimonial(){
   return (
-    <section id="testimonials" className="py-32 px-6 bg-dark-bg relative overflow-hidden">
+    <section id="testimonials" className="py-32 px-6 bg-transparent relative overflow-hidden text-white">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity:0, y:30 }}
@@ -13,11 +13,11 @@ export function Testimonial(){
           className="text-center mb-12"
         >
           <h2 className="mb-6">Depoimento Pump</h2>
-          <p className="max-w-3xl mx-auto text-text-secondary">
+          <p className="max-w-3xl mx-auto text-white">
             “A Pump elevou nossa presença digital a outro nível. O site ficou extremamente moderno,
             rápido e visualmente impecável — sem precisar contratar equipe interna.”
           </p>
-          <p className="mt-4 text-text-dim">— Nome do cliente</p>
+          <p className="mt-4 text-white">— Nome do cliente</p>
         </motion.div>
 
         <motion.div

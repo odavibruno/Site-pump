@@ -1,16 +1,9 @@
 import { motion } from 'motion/react';
-import { ImmersiveHeroBackground } from './ImmersiveHeroBackground';
- 
 import { BrandStrip } from './BrandStrip';
 
 export function Hero() {
   return (
-    <section className="relative h-screen w-screen flex items-center justify-center overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0">
-        <ImmersiveHeroBackground />
-      </div>
-
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden mt-24 md:mt-28 text-white">
       {/* Geometric shapes */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -36,7 +29,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-8 max-w-5xl mx-auto text-center font-poppins font-weight-400 text-gradient-light"
+          className="mb-8 max-w-5xl mx-auto text-center font-heading font-weight-400 text-white"
         >
           Tecnologia, estética e evolução digital.
         </motion.h1>
@@ -45,7 +38,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-4xl mx-auto mb-12 text-xl text-center font-montserrat text-gray-7d"
+          className="max-w-4xl mx-auto mb-12 text-xl text-center font-montserrat text-white"
         >
           Criamos aplicações modernas e inteligentes que unem tecnologia, fluidez e estética.
         </motion.p>
@@ -57,7 +50,7 @@ export function Hero() {
           className="flex justify-center items-center"
           style={{ marginBottom: 150 }}
         >
-          <motion.a href="#contact" aria-label="Iniciar projeto" className="group relative px-10 py-5 bg-accent-yellow text-dark-bg rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+          <motion.a href="#contact" aria-label="Iniciar projeto" className="group relative px-10 py-5 bg-accent-yellow text-white rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl">
             <div className="absolute inset-0 bg-gradient-to-r from-accent-yellow-bright to-accent-yellow opacity-0 group-hover:opacity-100 transition-opacity" />
             <span className="relative z-10 flex items-center gap-2">
               Iniciar projeto
@@ -79,7 +72,7 @@ export function Hero() {
         >
           <div className="inline-flex items-center gap-3 px-5 py-2 glass-tech rounded-full mb-10">
             <img src="/icons/leaf.svg" className="h-4 w-auto flex-shrink-0" alt="" />
-            <span className="text-sm text-text-secondary whitespace-nowrap">Marcas que confiam</span>
+              <span className="text-sm text-white whitespace-nowrap">Marcas que confiam</span>
           </div>
           <div style={{ paddingBottom: 150 }}>
             <BrandStrip logos={[
@@ -90,13 +83,13 @@ export function Hero() {
             ]} />
           </div>
           <div className="mt-0">
-            <div className="font-poppins font-weight-400 text-center leading-110">
-              <span className="block text-46 text-gray-cc">Sabemos como o digital funciona.</span>
-              <span className="block text-46 text-gray-4d">Seu negócio precisa de presença,</span>
-              <span className="block text-46 text-gray-4d">velocidade e experiência — e criar isso</span>
-              <span className="block text-46 text-gray-4d">internamente pode ser caro, demorado</span>
-              <span className="block text-46 text-gray-4d">e improdutivo.</span>
-              <span className="block text-46 text-gray-cc">É aqui que a Pump entra em cena.</span>
+            <div className="font-heading font-weight-400 text-center leading-110">
+              <span className="block text-46 text-white">Sabemos como o digital funciona.</span>
+              <span className="block text-46 text-white">Seu negócio precisa de presença,</span>
+              <span className="block text-46 text-white">velocidade e experiência — e criar isso</span>
+              <span className="block text-46 text-white">internamente pode ser caro, demorado</span>
+              <span className="block text-46 text-white">e improdutivo.</span>
+              <span className="block text-46 text-white">É aqui que a Pump entra em cena.</span>
             </div>
           </div>
         </motion.div>
@@ -109,16 +102,16 @@ export function Hero() {
           className="mt-24 grid grid-cols-3 gap-8 max-w-3xl mx-auto"
         >
           <div className="glass-tech p-6 rounded-2xl">
-            <h3 className="text-accent-yellow mb-2">200K+</h3>
-            <p className="text-sm text-text-secondary">Usuários diários</p>
+            <h3 className="text-white mb-2">200k+</h3>
+            <p className="text-sm text-white">Usuários diários</p>
           </div>
           <div className="glass-tech p-6 rounded-2xl">
-            <h3 className="text-accent-yellow mb-2">100+</h3>
-            <p className="text-sm text-text-secondary">Projetos</p>
+            <h3 className="text-white mb-2">100+</h3>
+            <p className="text-sm text-white">Projetos</p>
           </div>
           <div className="glass-tech p-6 rounded-2xl">
-            <h3 className="text-accent-yellow mb-2">99.9%</h3>
-            <p className="text-sm text-text-secondary">Uptime</p>
+            <h3 className="text-white mb-2">99.9%</h3>
+            <p className="text-sm text-white">Uptime</p>
           </div>
         </motion.div>
       </div>

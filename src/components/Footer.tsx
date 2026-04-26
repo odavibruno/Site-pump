@@ -5,7 +5,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-20 px-6 bg-dark-bg border-t border-dark-border">
+    <footer className="py-20 px-6 bg-transparent border-t border-dark-border text-white">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
@@ -18,35 +18,35 @@ export function Footer() {
                 loading="lazy"
               />
             </div>
-            <p className="text-text-secondary max-w-sm mb-6">
+            <p className="text-white max-w-sm mb-6">
               Desenvolvemos sites e aplicações que alcançam milhares de usuários.
               Transformamos ideias em produtos digitais de alta performance.
             </p>
             <div className="flex gap-4">
               <a 
                 href="#" 
-                className="p-3 glass-tech rounded-xl hover:glass-tech-hover hover:text-accent-yellow transition-all"
+                className="p-3 glass-tech rounded-xl hover:glass-tech-hover hover:text-white/80 transition-all"
                 aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5" />
               </a>
               <a 
                 href="#" 
-                className="p-3 glass-tech rounded-xl hover:glass-tech-hover hover:text-accent-yellow transition-all"
+                className="p-3 glass-tech rounded-xl hover:glass-tech-hover hover:text-white/80 transition-all"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
               </a>
               <a 
                 href="#" 
-                className="p-3 glass-tech rounded-xl hover:glass-tech-hover hover:text-accent-yellow transition-all"
+                className="p-3 glass-tech rounded-xl hover:glass-tech-hover hover:text-white/80 transition-all"
                 aria-label="Twitter"
               >
                 <Twitter className="w-5 h-5" />
               </a>
               <a 
                 href="#" 
-                className="p-3 glass-tech rounded-xl hover:glass-tech-hover hover:text-accent-yellow transition-all"
+                className="p-3 glass-tech rounded-xl hover:glass-tech-hover hover:text-white/80 transition-all"
                 aria-label="Github"
               >
                 <Github className="w-5 h-5" />
@@ -56,25 +56,25 @@ export function Footer() {
 
           {/* Links */}
           <div>
-            <h4 className="mb-4 text-text-primary">Navegação</h4>
+            <h4 className="mb-4 text-white">Navegação</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#services" className="text-text-secondary hover:text-accent-yellow transition-colors">
+                <a href="#services" className="text-white hover:text-white/80 transition-colors">
                   Serviços
                 </a>
               </li>
               <li>
-                <a href="#about" className="text-text-secondary hover:text-accent-yellow transition-colors">
+                <a href="#about" className="text-white hover:text-white/80 transition-colors">
                   Sobre
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-text-secondary hover:text-accent-yellow transition-colors">
+                <a href="#contact" className="text-white hover:text-white/80 transition-colors">
                   Contato
                 </a>
               </li>
               <li>
-                <a href="#" className="text-text-secondary hover:text-accent-yellow transition-colors">
+                <a href="#" className="text-white hover:text-white/80 transition-colors">
                   Portfólio
                 </a>
               </li>
@@ -83,19 +83,19 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="mb-4 text-text-primary">Contato</h4>
-            <ul className="space-y-3 text-text-secondary">
+            <h4 className="mb-4 text-white">Contato</h4>
+            <ul className="space-y-3 text-white">
               <li>
-                <a href="mailto:contato@pumpsites.com.br" className="hover:text-accent-yellow transition-colors">
+                <a href="mailto:contato@pumpsites.com.br" className="hover:text-white/80 transition-colors">
                   contato@pumpsites.com.br
                 </a>
               </li>
               <li>
-                <a href="tel:+5511999999999" className="hover:text-accent-yellow transition-colors">
+                <a href="tel:+5511999999999" className="hover:text-white/80 transition-colors">
                   +55 (11) 9999-9999
                 </a>
               </li>
-              <li className="text-text-dim">
+              <li className="text-white">
                 São Paulo, Brasil
               </li>
             </ul>
@@ -104,17 +104,17 @@ export function Footer() {
 
         {/* Bottom */}
         <div className="pt-8 border-t border-dark-border flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-text-dim text-sm">
+          <p className="text-white text-sm">
             © {currentYear} Pump Sites. Todos os direitos reservados.
           </p>
           <div className="flex gap-6 text-sm">
-            <a href="#" className="text-text-dim hover:text-text-secondary transition-colors">
+            <a href="#" className="text-white hover:text-white/80 transition-colors">
               Privacidade
             </a>
-            <a href="#" className="text-text-dim hover:text-text-secondary transition-colors">
+            <a href="#" className="text-white hover:text-white/80 transition-colors">
               Termos
             </a>
-            <a href="#" className="text-text-dim hover:text-text-secondary transition-colors">
+            <a href="#" className="text-white hover:text-white/80 transition-colors">
               Cookies
             </a>
           </div>

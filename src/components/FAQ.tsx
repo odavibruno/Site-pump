@@ -7,7 +7,7 @@ export function FAQ(){
   const titleY = useTransform(scrollYProgress, [0,1],[0,20])
   const subtitleY = useTransform(scrollYProgress, [0,1],[0,14])
   return (
-    <section id="faqs" className="py-32 px-6 bg-dark-surface relative overflow-hidden">
+    <section id="faqs" className="py-32 px-6 bg-transparent relative overflow-hidden text-white">
       <div ref={sectionRef as any} className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity:0, y:30 }}
@@ -17,10 +17,10 @@ export function FAQ(){
           className="text-center mb-12"
         >
           <motion.h2 style={{ y: titleY }} className="mb-6">FAQ</motion.h2>
-          <motion.p style={{ y: subtitleY }} className="text-text-secondary">Perguntas frequentes sobre a Pump</motion.p>
+          <motion.p style={{ y: subtitleY }} className="text-white">Perguntas frequentes sobre a Pump</motion.p>
         </motion.div>
 
-        <Accordion type="single" collapsible className="glass-tech rounded-2xl p-2">
+        <Accordion type="single" collapsible className="glass-tech rounded-2xl p-2 text-white">
           <AccordionItem value="item-1">
             <AccordionTrigger>Quanto tempo leva para criar um site?</AccordionTrigger>
             <AccordionContent>

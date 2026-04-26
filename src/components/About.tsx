@@ -19,7 +19,7 @@ export function About() {
   const titleY = useTransform(scrollYProgress, [0, 1], [0, 24]);
 
   return (
-    <section id="about" className="py-32 px-6 bg-dark-bg relative overflow-hidden">
+    <section id="about" className="py-32 px-6 bg-transparent relative overflow-hidden text-white">
       <GlowOrb 
         size={400} 
         color="#f4b41a" 
@@ -53,8 +53,8 @@ export function About() {
               transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="absolute -bottom-8 -right-8 glass-tech p-8 rounded-2xl glow-yellow"
             >
-              <h3 className="text-accent-yellow mb-2">5+ anos</h3>
-              <p className="text-text-secondary">de experiência</p>
+              <h3 className="text-white mb-2">5+ anos</h3>
+              <p className="text-white">de experiência</p>
             </motion.div>
           </motion.div>
 
@@ -66,17 +66,17 @@ export function About() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 glass-tech rounded-full mb-6">
               <div className="w-2 h-2 rounded-full bg-accent-yellow animate-pulse" />
-              <span className="text-sm text-text-secondary">Introduzindo a Pump</span>
+              <span className="text-sm text-white">Introduzindo a Pump</span>
             </div>
 
             <motion.h2 style={{ y: titleY }} className="mb-4">
               Sabemos como o digital funciona.
             </motion.h2>
-            <p className="text-text-secondary text-lg mb-8">
+            <p className="text-white text-lg mb-8">
               Seu negócio precisa de presença, velocidade e experiência — e criar isso internamente pode ser caro, demorado e improdutivo.
             </p>
             
-            <div className="space-y-6 text-text-secondary text-lg mb-10">
+            <div className="space-y-6 text-white text-lg mb-10">
               <p>
                 É aqui que a Pump entra: design moderno, tecnologia precisa e interfaces fluídas, entregues de forma rápida e acessível.
               </p>
@@ -100,7 +100,7 @@ export function About() {
                   className="flex items-center justify-center gap-3"
                 >
                   <CheckCircle2 className="w-6 h-6 text-accent-yellow flex-shrink-0" />
-                  <span className="text-text-secondary">{highlight}</span>
+                  <span className="text-white">{highlight}</span>
                 </motion.div>
               ))}
             </div>

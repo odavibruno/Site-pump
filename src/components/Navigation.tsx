@@ -41,7 +41,7 @@ export function Navigation() {
             </a>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-text-primary hover:text-accent-yellow transition-colors"
+              className="md:hidden p-2 text-white hover:text-white/80 transition-colors"
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -55,7 +55,7 @@ export function Navigation() {
                   <a
                     key={link.label}
                     href={link.href}
-                    className="text-gray-7d hover:text-text-primary transition-colors"
+                    className="text-white hover:text-white/80 transition-colors"
                   >
                     {link.label}
                   </a>
@@ -85,12 +85,12 @@ export function Navigation() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-text-secondary hover:text-accent-yellow transition-colors py-2"
+                  className="block text-white hover:text-white/80 transition-colors py-2"
                 >
                   {link.label}
                 </a>
               ))}
-              <button className="w-full px-6 py-3 bg-accent-yellow text-dark-bg rounded-xl transition-all duration-300 hover:scale-105">
+              <button className="w-full px-6 py-3 bg-accent-yellow text-white rounded-xl transition-all duration-300 hover:scale-105">
                 Iniciar projeto
               </button>
             </div>

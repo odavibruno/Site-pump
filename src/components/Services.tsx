@@ -44,9 +44,9 @@ export function Services() {
   const subtitleY = useTransform(scrollYProgress, [0, 1], [0, 20]);
 
   return (
-    <section id="services" className="py-32 px-6 relative overflow-hidden">
+    <section id="services" className="py-32 px-6 relative overflow-hidden text-white bg-transparent">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-dark-bg via-dark-surface to-dark-bg" />
+      <div className="absolute inset-0 bg-transparent" />
       
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
@@ -58,13 +58,13 @@ export function Services() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 glass-tech rounded-full mb-6">
             <div className="w-2 h-2 rounded-full bg-accent-yellow animate-pulse" />
-            <span className="text-sm text-text-secondary">O que fazemos</span>
+            <span className="text-sm text-white">O que fazemos</span>
           </div>
           <motion.h2 style={{ y: titleY }} className="mb-6">
             Resolvemos os desafios do digital com{' '}
-            <span className="text-accent-yellow">design inteligente</span>
+            <span className="text-white">design inteligente</span>
           </motion.h2>
-          <motion.p style={{ y: subtitleY }} className="max-w-4xl mx-auto text-text-secondary text-lg mb-10">
+          <motion.p style={{ y: subtitleY }} className="max-w-4xl mx-auto text-white text-lg mb-10">
             Stack completa para criar, lançar e escalar produtos digitais que encantam e geram resultados.
           </motion.p>
         </motion.div>
@@ -95,7 +95,7 @@ export function Services() {
                     <Icon className="w-8 h-8 text-accent-yellow" />
                   </div>
                   <h3 className="mb-4 text-2xl">{service.title}</h3>
-                  <p className="text-text-secondary leading-relaxed">
+                  <p className="text-white leading-relaxed">
                     {service.description}
                   </p>
                 </div>

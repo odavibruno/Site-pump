@@ -54,7 +54,8 @@
 
 @layer theme {
   :root, :host {
-    --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-sans: "Plus Jakarta Sans", sans-serif;
+    --font-heading: "Syne", sans-serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --color-gray-100: oklch(.967 .003 264.542);
     --spacing: .25rem;
@@ -352,11 +353,15 @@
   }
 
   body {
-    background-color: var(--color-dark-bg);
-    color: var(--color-text-primary);
+    background-color: transparent;
+    color: #fff;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
   }
 
   h1 {
@@ -1425,7 +1430,7 @@
 
   /* Custom utilities */
   .font-poppins {
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-family: var(--font-heading);
   }
 
   .font-weight-500 { font-weight: 500; }
@@ -1437,7 +1442,8 @@
 
   .font-anybody { font-family: 'Anybody', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; }
   .text-gray-7d { color: #7D7F79; }
-  .font-montserrat { font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; }
+  .font-montserrat { font-family: var(--font-sans); }
+  .font-heading { font-family: var(--font-heading); }
 
   .text-gradient-light {
     background: linear-gradient(to top right, #4D4D4D 0%, #CCCCCC 100%);

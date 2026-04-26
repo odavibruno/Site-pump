@@ -11,7 +11,7 @@ export function TechStack() {
   const subtitleY = useTransform(scrollYProgress, [0, 1], [0, 20]);
 
   return (
-    <section className="py-32 px-6 bg-dark-surface relative overflow-hidden" id="how">
+    <section className="py-32 px-6 bg-transparent relative overflow-hidden text-white" id="how">
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           ref={ref}
@@ -21,7 +21,7 @@ export function TechStack() {
           className="text-center mb-16"
         >
           <motion.h2 style={{ y: titleY }} className="mb-6">Design de alto nível, entregues do jeito certo.</motion.h2>
-          <motion.p style={{ y: subtitleY }} className="max-w-4xl mx-auto text-text-secondary text-lg mb-10">Como a Pump trabalha</motion.p>
+          <motion.p style={{ y: subtitleY }} className="max-w-4xl mx-auto text-white text-lg mb-10">Como a Pump trabalha</motion.p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -43,7 +43,7 @@ export function TechStack() {
                   <Icon className="w-8 h-8 text-accent-yellow" />
                 </div>
                 <h3 className="mb-3 text-2xl">{step.title}</h3>
-                <p className="text-text-secondary leading-relaxed">{step.desc}</p>
+                <p className="text-white leading-relaxed">{step.desc}</p>
               </motion.div>
             );
           })}

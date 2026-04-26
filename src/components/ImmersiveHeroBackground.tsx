@@ -17,103 +17,53 @@ uniform float u_time;
 uniform vec2 u_resolution;
 uniform vec2 u_mouse;
 
-varying vec2 v_uv;
-
-vec3 mod289(vec3 x) {
-  return x - floor(x * (1.0 / 289.0)) * 289.0;
+// Função de Ruído Simplex para ondas orgânicas
+float noise(vec2 p) {
+    return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
 }
 
-vec2 mod289(vec2 x) {
-  return x - floor(x * (1.0 / 289.0)) * 289.0;
-}
-
-vec3 permute(vec3 x) {
-  return mod289(((x * 34.0) + 1.0) * x);
-}
-
-float snoise(vec2 v) {
-  const vec4 C = vec4(
-    0.211324865405187,
-    0.366025403784439,
-   -0.577350269189626,
-    0.024390243902439
-  );
-
-  vec2 i = floor(v + dot(v, C.yy));
-  vec2 x0 = v - i + dot(i, C.xx);
-  vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
-  vec4 x12 = x0.xyxy + C.xxzz;
-  x12.xy -= i1;
-
-  i = mod289(i);
-  vec3 p = permute(
-    permute(i.y + vec3(0.0, i1.y, 1.0))
-    + i.x + vec3(0.0, i1.x, 1.0)
-  );
-
-  vec3 m = max(
-    0.5 - vec3(
-      dot(x0, x0),
-      dot(x12.xy, x12.xy),
-      dot(x12.zw, x12.zw)
-    ),
-    0.0
-  );
-  m = m * m;
-  m = m * m;
-
-  vec3 x = 2.0 * fract(p * C.www) - 1.0;
-  vec3 h = abs(x) - 0.5;
-  vec3 ox = floor(x + 0.5);
-  vec3 a0 = x - ox;
-
-  m *= 1.79284291400159 - 0.85373472095314 * (a0 * a0 + h * h);
-
-  vec3 g;
-  g.x = a0.x * x0.x + h.x * x0.y;
-  g.yz = a0.yz * x12.xz + h.yz * x12.yw;
-  return 130.0 * dot(m, g);
-}
-
-float grain(vec2 uv) {
-  return fract(sin(dot(uv, vec2(127.1, 311.7))) * 43758.5453123);
+// Matemática de Camadas (FBM sutil)
+float fbm(vec2 p) {
+    float v = 0.0;
+    float a = 0.5;
+    for (int i = 0; i < 3; i++) {
+        v += a * noise(p);
+        p *= 2.0;
+        a *= 0.5;
+    }
+    return v;
 }
 
 void main() {
-  vec2 uv = v_uv;
-  vec2 aspect = vec2(u_resolution.x / max(u_resolution.y, 1.0), 1.0);
-  vec2 centered = (uv - 0.5) * aspect;
-  vec2 mouse = (u_mouse - 0.5) * aspect;
+    vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+    float ratio = u_resolution.x / u_resolution.y;
+    vec2 uv_ratio = vec2(uv.x * ratio, uv.y);
+    vec2 mouse_ratio = vec2(u_mouse.x * ratio, u_mouse.y);
 
-  float t = u_time * 0.08;
-  float n1 = snoise(centered * 1.8 + vec2(t, -t * 0.6));
-  float n2 = snoise(centered * 3.2 - vec2(t * 0.7, t * 0.9));
-  float flow = n1 * 0.65 + n2 * 0.35;
+    // Criando as ondas suaves (sand waves)
+    float waves = fbm(uv_ratio * 2.0 + u_time * 0.1);
+    waves += sin(uv_ratio.x * 3.0 + u_time) * 0.1; // Ondulação horizontal
 
-  vec3 deepBlue = vec3(0.043, 0.059, 0.141);
-  vec3 darkPurple = vec3(0.192, 0.082, 0.278);
-  vec3 magenta = vec3(0.659, 0.157, 0.761);
+    // Cor base ultra profunda (quase preto)
+    vec3 color = vec3(0.01, 0.01, 0.02);
 
-  float baseMix = smoothstep(-0.85, 0.8, flow);
-  vec3 color = mix(deepBlue, darkPurple, baseMix);
+    // Influência do mouse (Glow roxo atmosférico que ilumina as ondas)
+    float dist = distance(uv_ratio, mouse_ratio);
+    float m_glow = smoothstep(0.7, 0.0, dist);
 
-  vec2 hotspotPos = mouse * 0.9 + vec2(
-    snoise(centered * 1.0 + vec2(t * 0.8, -t * 0.3)) * 0.16,
-    snoise(centered * 1.0 + vec2(-t * 0.4, t * 0.5)) * 0.16
-  );
-  float hotspot = exp(-length(centered - hotspotPos) * 3.2);
-  hotspot += exp(-length(centered + hotspotPos * 0.7 + vec2(0.22, -0.14)) * 4.5) * 0.5;
+    // Camadas de Roxo (tonalidades escuras e elegantes)
+    vec3 darkPurple = vec3(0.08, 0.02, 0.15);
+    vec3 lightPurple = vec3(0.2, 0.05, 0.4);
+    vec3 waveColor = mix(darkPurple, lightPurple, waves);
 
-  color = mix(color, magenta, clamp(hotspot, 0.0, 1.0) * 0.75);
+    // Mistura final: Apenas ilumina as ondas onde o mouse está
+    color = mix(color, waveColor, m_glow * 0.8);
 
-  float vignette = smoothstep(1.3, 0.15, length(centered));
-  color *= vignette * 0.92 + 0.08;
+    // Ruído de grão fino tátil (opacidade 0.02)
+    float grain = noise(uv + u_time) * 0.02;
+    color += grain;
 
-  float filmGrain = grain(gl_FragCoord.xy);
-  float grainAmount = (filmGrain - 0.5) * 0.16;
-  color += grainAmount;
-
-  gl_FragColor = vec4(color, 1.0);
+    gl_FragColor = vec4(color, 1.0);
 }
 `;
 
@@ -125,11 +75,6 @@ export function ImmersiveHeroBackground() {
     if (!canvas) {
       return;
     }
-
-    const previousBodyOverflow = document.body.style.overflow;
-    const previousHtmlOverflow = document.documentElement.style.overflow;
-    document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
 
     const renderer = new THREE.WebGLRenderer({
       canvas,
@@ -158,9 +103,9 @@ export function ImmersiveHeroBackground() {
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
     scene.add(mesh);
 
-    const onResize = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
+    const container = canvas.parentElement ?? canvas;
+    const onResize = (width: number, height: number) => {
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.setSize(width, height, false);
       uniforms.u_resolution.value.set(width, height);
     };
@@ -170,9 +115,15 @@ export function ImmersiveHeroBackground() {
       targetMouse.set(event.clientX / window.innerWidth, 1 - event.clientY / window.innerHeight);
     };
 
-    window.addEventListener('resize', onResize);
     window.addEventListener('mousemove', onMouseMove, { passive: true });
-    onResize();
+    const resizeObserver = new ResizeObserver((entries) => {
+      const entry = entries[0];
+      const width = Math.max(1, Math.floor(entry.contentRect.width));
+      const height = Math.max(1, Math.floor(entry.contentRect.height));
+      onResize(width, height);
+    });
+    resizeObserver.observe(container);
+    onResize(Math.max(1, container.clientWidth), Math.max(1, container.clientHeight));
 
     let rafId = 0;
     const clock = new THREE.Clock();
@@ -186,10 +137,8 @@ export function ImmersiveHeroBackground() {
 
     return () => {
       window.cancelAnimationFrame(rafId);
-      window.removeEventListener('resize', onResize);
       window.removeEventListener('mousemove', onMouseMove);
-      document.body.style.overflow = previousBodyOverflow;
-      document.documentElement.style.overflow = previousHtmlOverflow;
+      resizeObserver.disconnect();
       mesh.geometry.dispose();
       material.dispose();
       renderer.dispose();
@@ -199,7 +148,7 @@ export function ImmersiveHeroBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 h-screen w-screen pointer-events-none"
+      className="absolute inset-0 w-full h-full pointer-events-none"
       aria-hidden="true"
     />
   );
